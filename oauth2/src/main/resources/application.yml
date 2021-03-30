@@ -1,0 +1,16 @@
+## GitHub
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: 222de8a09d7ca4609f11
+            client-secret: 8f8fe93178142e15900d5864128557e99cef791c
+
+## H2
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test;
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
