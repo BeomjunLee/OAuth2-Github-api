@@ -1,10 +1,7 @@
 package security5.oauth2.member;
 
 import lombok.RequiredArgsConstructor;
-import org.kohsuke.github.GHEventInfo;
-import org.kohsuke.github.GHUser;
-import org.kohsuke.github.GitHub;
-import org.kohsuke.github.GitHubBuilder;
+import org.kohsuke.github.*;
 import org.springframework.core.ResolvableType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -49,13 +46,7 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    public ResponseEntity login(HttpSession session) {
-        Object checkSession = session.getAttribute("oAuthToken");
-
-        if(checkSession != null){
-
-        }
-
+    public ResponseEntity login() {
         Response res = Response.builder()
                 .status(200)
                 .success("success")
@@ -71,10 +62,13 @@ public class LoginController {
     @GetMapping("/")
     public ResponseEntity main(@AuthenticationPrincipal OAuth2User oAuth2User, HttpSession session) throws IOException {
 
-        GitHub gitHub = new GitHubBuilder().withOAuthToken(session.getAttribute("oAuthToken").toString(), oAuth2User.getName()).build();
+        GitHub gitHub = new GitHubBuilder()
+                .withOAuthToken(session.getAttribute("oAuthToken").toString(), oAuth2User.getName()).build();
 
         GHUser user = gitHub.getUser(oAuth2User.getName());
         System.out.println("user = " + user);
+        Map<String, GHRepository> repositories = user.getRepositories();
+        System.out.println("repositories = " + repositories);
 
         MemberDto dto = MemberDto.builder()
                 .username(user.getLogin())
