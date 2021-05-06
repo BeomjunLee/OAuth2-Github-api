@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import security5.oauth2.rest.Response;
 import security5.oauth2.rest.LoginResource;
 
@@ -59,6 +60,14 @@ public class LoginController {
         return ResponseEntity.ok(resource);
     }
 
+    @GetMapping("/repos/{userName}/{repoName}")
+    public ResponseEntity repo(@PathVariable String userName, @PathVariable String repoName) throws IOException {
+        GitHub git = new GitHubBuilder().build();
+        GHRepository repository = git.getRepository(userName+"/"+repoName);
+        System.out.println("repository = " + repository);
+        return ResponseEntity.ok(repository);
+    }
+
     @GetMapping("/")
     public ResponseEntity main(@AuthenticationPrincipal OAuth2User oAuth2User, HttpSession session) throws IOException {
 
@@ -66,20 +75,51 @@ public class LoginController {
                 .withOAuthToken(session.getAttribute("oAuthToken").toString(), oAuth2User.getName()).build();
 
         GHUser user = gitHub.getUser(oAuth2User.getName());
-        System.out.println("user = " + user);
-        Map<String, GHRepository> repositories = user.getRepositories();
-        System.out.println("repositories = " + repositories);
+        GHRepository repository = user.getRepository("microservices-spring-cloud");
+        System.out.println("repository = " + repository);
+//        GitHub git = new GitHubBuilder().build();
+//        GHRepository repository = git.getRepository("leedh2004/It-Place");
+//        System.out.println("repository = " + repository);
+
+//        PagedIterator<GHRepository.Contributor> iterator = repository.listContributors().iterator();
+//
+//        while (iterator.hasNext()) {
+//            GHRepository.Contributor contributor = iterator.next();
+//            System.out.println("=====================");
+//            System.out.println("username = " + contributor.getLogin());
+//            System.out.println("contributions = " + contributor.getContributions());
+//        }
+
+
+//        PagedIterable<GHCommit> ghCommits = repository.listCommits();
+//        List<GHCommit> commitList = ghCommits.toList();
+//        System.out.println("commitList = " + commitList);
+//
+//        long count = commitList.stream().count();
+//        System.out.println("count = " + count);
+//
+////        System.out.println("repositories = " + repositories);
+//        Map<String, GHRepository> repositories = user.getRepositories();
+//        GHRepository repository = repositories.get("spring-cloud-mircoservices");
+//        long webSocketChatCount = webSocketChat.listCommits().toList().stream().count();
+//        System.out.println("count = " + webSocketChatCount);
 
         MemberDto dto = MemberDto.builder()
-                .username(user.getLogin())
-                .name(user.getName())
-                .avatarUrl(user.getAvatarUrl())
-                .followersCount(user.getFollowersCount())
-                .location(user.getLocation())
-                .createdAt(user.getCreatedAt())
-                .updatedAt(user.getUpdatedAt())
+//                .username(user.getLogin())
+//                .name(user.getName())
+//                .avatarUrl(user.getAvatarUrl())
+//                .followersCount(user.getFollowersCount())
+//                .location(user.getLocation())
+//                .createdAt(user.getCreatedAt())
+//                .updatedAt(user.getUpdatedAt())
                 .build();
 
         return ResponseEntity.ok(dto);
     }
 }
+
+
+
+
+
+

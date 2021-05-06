@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic().disable()
                 .csrf().disable() //csrf 비활성화
                 .authorizeRequests()
-                .anyRequest().authenticated() //어떤 요청이든 권한이 필요
+                .anyRequest().permitAll() //어떤 요청이든 권한이 필요, 지금은 허가
             .and()
                 .oauth2Login()
                 .loginPage("/login").permitAll() //login 은 아무나 허가
