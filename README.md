@@ -74,6 +74,7 @@ public class CustomOAuth2MemberService implements OAuth2UserService{
 ### Github Api 사용 example
 ```java
 //로그인시 얻어지는 accessToken 값과, 유저이름으로 Github api 접근
+//GitHub를 통해 다양한 api 에 접근할 수 있다.
 GitHub gitHub = new GitHubBuilder()
                 .withOAuthToken(session.getAttribute("oAuthToken").toString(), oAuth2User.getName()).build(); 
                 
@@ -102,7 +103,7 @@ GHUser 를 통해 다양한 api 요청 메서드에 접근할 수 있다.<br><br
 <br>
 <img src="https://user-images.githubusercontent.com/69130921/117583843-71331e00-b144-11eb-8e23-5bd7116356d0.png"><br>
 특정 repo 의 기여자들 리스트와 커밋 현황을 확인할 수 있다.<br>
-<img src="https://user-images.githubusercontent.com/69130921/117583864-88720b80-b144-11eb-89d7-14d92054e507.png"><br>
+<img src="https://user-images.githubusercontent.com/69130921/117583864-88720b80-b144-11eb-89d7-14d92054e507.png"><br><br>
 외에 다양한 api 를 사용할 수 있다.
 <br>
 
