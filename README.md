@@ -1,5 +1,5 @@
 ## OAuth2 Github 연동 및 Github Api 사용
-자세한 내용은 블로그에 포스팅하였습니다 https://blog.naver.com/qjawnswkd/222293370027<br>
+oAuth2 로그인의 자세한 내용은 블로그에 포스팅하였습니다 https://blog.naver.com/qjawnswkd/222293370027<br>
 
 ### Gradle
 ```java
