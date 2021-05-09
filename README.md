@@ -90,9 +90,12 @@ GHRepository repository = git.getRepository("BeomjunLee/microservices-spring-clo
 //등등 다양한 Github api 를 불러올수 있다.
 ```
 
-<img src="https://user-images.githubusercontent.com/69130921/117583739-d6d2da80-b143-11eb-8f22-18c1ef98cc28.png"><br>
-GHUser 를 통해 다양한 api 요청 메서드에 접근할 수 있다.
 <br>
+
+몇가지 예제를 적자면 <br><br>
+
+<img src="https://user-images.githubusercontent.com/69130921/117583739-d6d2da80-b143-11eb-8f22-18c1ef98cc28.png"><br>
+GHUser 를 통해 다양한 api 요청 메서드에 접근할 수 있다.<br><br>
 <img src="https://user-images.githubusercontent.com/69130921/117583780-0eda1d80-b144-11eb-9a99-6f62ed1fe408.png"><br>
 특정 repo 에 접근해서 커밋과 전체 커밋 갯수를 확인할 수 있다.<br>
 <img src="https://user-images.githubusercontent.com/69130921/117583799-26190b00-b144-11eb-9010-e115c187622d.png"><br>
