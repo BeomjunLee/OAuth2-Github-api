@@ -3,9 +3,9 @@
 
 ### Gradle
 ```java
-  //spring security oauth2
-  implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-  implementation 'org.springframework.boot:spring-boot-starter-security'
+//spring security oauth2
+implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+implementation 'org.springframework.boot:spring-boot-starter-security'
 
 //github api
 implementation group: 'org.kohsuke', name: 'github-api', version: '1.125'
