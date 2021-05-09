@@ -5,10 +5,10 @@
 ```java
   //spring security oauth2
   implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
+  implementation 'org.springframework.boot:spring-boot-starter-security'
 
-	//github api
-	implementation group: 'org.kohsuke', name: 'github-api', version: '1.125'
+//github api
+implementation group: 'org.kohsuke', name: 'github-api', version: '1.125'
   ```
   
   <br>
@@ -73,14 +73,19 @@ public class CustomOAuth2MemberService implements OAuth2UserService{
 
 ### Github Api 사용 example
 ```java
+//로그인시 얻어지는 accessToken 값과, 유저이름으로 Github api 접근
 GitHub gitHub = new GitHubBuilder()
-                .withOAuthToken(session.getAttribute("oAuthToken").toString(), oAuth2User.getName()).build(); //로그인시 얻어지는 accessToken 값과, 유저이름으로 Github api 접근
+                .withOAuthToken(session.getAttribute("oAuthToken").toString(), oAuth2User.getName()).build(); 
                 
- GHUser user = gitHub.getUser(oAuth2User.getName()); //accessToken 이용 안할시 1시간에 50번만 호출 가능하고 이용시에는 5000번까지 가능하다
- GHRepository repository = user.getRepository("microservices-spring-cloud"); //repo 이름으로 찾기 예시
+//accessToken 이용 안할시 1시간에 50번만 호출 가능하고 이용시에는 5000번까지 가능하다		
+GHUser user = gitHub.getUser(oAuth2User.getName()); 
+//repo 이름으로 찾기 예시
+GHRepository repository = user.getRepository("microservices-spring-cloud"); 
  
-GitHub git = new GitHubBuilder().build(); //아이디 로그인 없이 그냥 불러올수 있다 (1시간 50번 요청 제한)
-GHRepository repository = git.getRepository("BeomjunLee/microservices-spring-cloud"); //로그인 안할시에는 repo 검색시 앞에 유저이름이 필수로 들어가야한다.
+ //아이디 로그인 없이 그냥 불러올수 있다 (1시간 50번 요청 제한)
+GitHub git = new GitHubBuilder().build(); 
+//로그인 안할시에는 repo 검색시 앞에 유저이름이 필수로 들어가야한다.
+GHRepository repository = git.getRepository("BeomjunLee/microservices-spring-cloud"); 
 
 //등등 다양한 Github api 를 불러올수 있다.
 ```
