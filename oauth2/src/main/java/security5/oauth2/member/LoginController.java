@@ -74,44 +74,39 @@ public class LoginController {
         GitHub gitHub = new GitHubBuilder()
                 .withOAuthToken(session.getAttribute("oAuthToken").toString(), oAuth2User.getName()).build();
 
+        GHRepository repo = gitHub.getRepository("BeomjunLee/microservices-spring-cloud");
+
         GHUser user = gitHub.getUser(oAuth2User.getName());
         GHRepository repository = user.getRepository("microservices-spring-cloud");
+
+
+        GitHub git = new GitHubBuilder().build();
         System.out.println("repository = " + repository);
-//        GitHub git = new GitHubBuilder().build();
-//        GHRepository repository = git.getRepository("leedh2004/It-Place");
-//        System.out.println("repository = " + repository);
 
-//        PagedIterator<GHRepository.Contributor> iterator = repository.listContributors().iterator();
-//
-//        while (iterator.hasNext()) {
-//            GHRepository.Contributor contributor = iterator.next();
-//            System.out.println("=====================");
-//            System.out.println("username = " + contributor.getLogin());
-//            System.out.println("contributions = " + contributor.getContributions());
-//        }
+        PagedIterator<GHRepository.Contributor> iterator = repository.listContributors().iterator();
 
+        while (iterator.hasNext()) {
+            GHRepository.Contributor contributor = iterator.next();
+            System.out.println("=====================");
+            System.out.println("username = " + contributor.getLogin());
+            System.out.println("contributions = " + contributor.getContributions());
+        }
 
-//        PagedIterable<GHCommit> ghCommits = repository.listCommits();
-//        List<GHCommit> commitList = ghCommits.toList();
-//        System.out.println("commitList = " + commitList);
-//
-//        long count = commitList.stream().count();
-//        System.out.println("count = " + count);
-//
-////        System.out.println("repositories = " + repositories);
-//        Map<String, GHRepository> repositories = user.getRepositories();
-//        GHRepository repository = repositories.get("spring-cloud-mircoservices");
-//        long webSocketChatCount = webSocketChat.listCommits().toList().stream().count();
-//        System.out.println("count = " + webSocketChatCount);
+        PagedIterable<GHCommit> ghCommits = repository.listCommits();
+        List<GHCommit> commitList = ghCommits.toList();
+        System.out.println("commitList = " + commitList);
+
+        long count = commitList.stream().count();
+        System.out.println("count = " + count);
 
         MemberDto dto = MemberDto.builder()
-//                .username(user.getLogin())
-//                .name(user.getName())
-//                .avatarUrl(user.getAvatarUrl())
-//                .followersCount(user.getFollowersCount())
-//                .location(user.getLocation())
-//                .createdAt(user.getCreatedAt())
-//                .updatedAt(user.getUpdatedAt())
+                .username(user.getLogin())
+                .name(user.getName())
+                .avatarUrl(user.getAvatarUrl())
+                .followersCount(user.getFollowersCount())
+                .location(user.getLocation())
+                .createdAt(user.getCreatedAt())
+                .updatedAt(user.getUpdatedAt())
                 .build();
 
         return ResponseEntity.ok(dto);

@@ -34,11 +34,9 @@ public class CustomOAuth2MemberService implements OAuth2UserService{
 
         session.setAttribute("oAuthToken", userRequest.getAccessToken().getTokenValue());
 
-
         return new DefaultOAuth2User(
                 Collections.singleton(new SimpleGrantedAuthority(member.getRole())),
                 oAuth2User.getAttributes(), "login");
-        //nameAttributeKey = Principal name에 저장됨
     }
 
     public Member saveOrUpdate(OAuth2User oAuth2User) {
