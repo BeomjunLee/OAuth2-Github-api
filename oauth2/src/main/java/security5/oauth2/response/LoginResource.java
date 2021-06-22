@@ -1,4 +1,4 @@
-package security5.oauth2.rest;
+package security5.oauth2.response;
 
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;

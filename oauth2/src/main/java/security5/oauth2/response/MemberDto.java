@@ -1,4 +1,4 @@
-package security5.oauth2.member;
+package security5.oauth2.response;
 
 import lombok.Builder;
 import lombok.Data;

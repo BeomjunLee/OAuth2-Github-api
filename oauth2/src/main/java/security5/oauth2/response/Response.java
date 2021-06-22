@@ -1,7 +1,6 @@
-package security5.oauth2.rest;
+package security5.oauth2.response;
 
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 
 @Getter

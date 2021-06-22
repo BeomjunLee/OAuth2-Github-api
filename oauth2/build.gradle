@@ -19,11 +19,12 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 
@@ -31,6 +32,7 @@ dependencies {
 	implementation group: 'org.kohsuke', name: 'github-api', version: '1.125'
 
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
 	//jpa query log
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.7'
 

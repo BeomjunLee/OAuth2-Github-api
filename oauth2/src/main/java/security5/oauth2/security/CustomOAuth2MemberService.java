@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import security5.oauth2.member.Member;
 import security5.oauth2.member.MemberRepository;
 import security5.oauth2.member.MemberRole;
-
 import javax.servlet.http.HttpSession;
 import java.util.Collections;
 

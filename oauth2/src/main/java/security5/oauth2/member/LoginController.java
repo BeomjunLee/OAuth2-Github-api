@@ -1,5 +1,4 @@
 package security5.oauth2.member;
-
 import lombok.RequiredArgsConstructor;
 import org.kohsuke.github.*;
 import org.springframework.core.ResolvableType;
@@ -7,18 +6,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import security5.oauth2.rest.Response;
-import security5.oauth2.rest.LoginResource;
+import security5.oauth2.response.LoginResource;
+import security5.oauth2.response.MemberDto;
+import security5.oauth2.response.Response;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.security.Principal;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
