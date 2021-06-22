@@ -9,10 +9,9 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import security5.oauth2.member.Member;
-import security5.oauth2.member.MemberRepository;
-import security5.oauth2.member.MemberRole;
+import security5.oauth2.github.domain.Member;
+import security5.oauth2.github.repository.MemberRepository;
+import security5.oauth2.github.domain.MemberRole;
 import javax.servlet.http.HttpSession;
 import java.util.Collections;
 

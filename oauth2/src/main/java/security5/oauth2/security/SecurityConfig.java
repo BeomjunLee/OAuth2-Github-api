@@ -1,4 +1,4 @@
-package security5.oauth2.config;
+package security5.oauth2.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;

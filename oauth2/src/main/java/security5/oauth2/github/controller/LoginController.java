@@ -1,4 +1,4 @@
-package security5.oauth2.member;
+package security5.oauth2.github.controller;
 import lombok.RequiredArgsConstructor;
 import org.kohsuke.github.*;
 import org.springframework.core.ResolvableType;
@@ -9,15 +9,13 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import security5.oauth2.response.LoginResource;
-import security5.oauth2.response.MemberDto;
-import security5.oauth2.response.Response;
+import security5.oauth2.github.hateoas.LoginResource;
+import security5.oauth2.github.dto.MemberDto;
+import security5.oauth2.github.dto.response.Response;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -57,44 +55,13 @@ public class LoginController {
         return ResponseEntity.ok(resource);
     }
 
-    @GetMapping("/repos/{userName}/{repoName}")
-    public ResponseEntity repo(@PathVariable String userName, @PathVariable String repoName) throws IOException {
-        GitHub git = new GitHubBuilder().build();
-        GHRepository repository = git.getRepository(userName+"/"+repoName);
-        System.out.println("repository = " + repository);
-        return ResponseEntity.ok(repository);
-    }
-
-    @GetMapping("/")
+    @GetMapping("/users/info")
     public ResponseEntity main(@AuthenticationPrincipal OAuth2User oAuth2User, HttpSession session) throws IOException {
 
         GitHub gitHub = new GitHubBuilder()
                 .withOAuthToken(session.getAttribute("oAuthToken").toString(), oAuth2User.getName()).build();
 
-        GHRepository repo = gitHub.getRepository("BeomjunLee/microservices-spring-cloud");
-
         GHUser user = gitHub.getUser(oAuth2User.getName());
-        GHRepository repository = user.getRepository("microservices-spring-cloud");
-
-
-        GitHub git = new GitHubBuilder().build();
-        System.out.println("repository = " + repository);
-
-        PagedIterator<GHRepository.Contributor> iterator = repository.listContributors().iterator();
-
-        while (iterator.hasNext()) {
-            GHRepository.Contributor contributor = iterator.next();
-            System.out.println("=====================");
-            System.out.println("username = " + contributor.getLogin());
-            System.out.println("contributions = " + contributor.getContributions());
-        }
-
-        PagedIterable<GHCommit> ghCommits = repository.listCommits();
-        List<GHCommit> commitList = ghCommits.toList();
-        System.out.println("commitList = " + commitList);
-
-        long count = commitList.stream().count();
-        System.out.println("count = " + count);
 
         MemberDto dto = MemberDto.builder()
                 .username(user.getLogin())

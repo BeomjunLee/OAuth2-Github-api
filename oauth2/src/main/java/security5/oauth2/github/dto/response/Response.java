@@ -1,4 +1,4 @@
-package security5.oauth2.response;
+package security5.oauth2.github.dto.response;
 
 import lombok.Builder;
 import lombok.Getter;
