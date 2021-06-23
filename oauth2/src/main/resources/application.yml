@@ -5,11 +5,11 @@ spring:
       client:
         registration:
           github:
-            client-id: 222de8a09d7ca4609f11
-            client-secret: 8f8fe93178142e15900d5864128557e99cef791c
+            client-id:
+            client-secret:
           google:
-            client-id: 222de8a09d7ca4609f11
-            client-secret: 8f8fe93178142e15900d5864128557e99cef791c
+            client-id:
+            client-secret:
 
 ## H2
   datasource:
